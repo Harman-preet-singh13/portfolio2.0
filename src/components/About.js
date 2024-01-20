@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { FaReact } from "react-icons/fa";
 import { TbBrandNextjs } from "react-icons/tb";
 import { FaNodeJs } from "react-icons/fa";
@@ -6,6 +6,8 @@ import { SiTailwindcss } from "react-icons/si";
 import { SiMui } from "react-icons/si";
 import { FaFigma } from "react-icons/fa";
 import { FaCss3 } from "react-icons/fa";
+import gsap from "gsap";
+
 
 const btnTech = [
   {
@@ -43,6 +45,30 @@ const btnTech = [
 ];
 
 export default function About() {
+
+  const spanRef = useRef(null);
+
+  useEffect(() => {
+    const animation = gsap.to(spanRef.current, {
+      backgroundSize: '100% 100%',
+      duration: 1,
+      ease: 'power2.inOut', 
+      paused: true, 
+    });
+
+    const handleScroll = () => {
+      const scrollPercentage = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+      animation.progress(scrollPercentage / 25);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+
   return (
     <div className="max-w-[1024px] mx-auto mt-5 h-[90vh]">
       <div className="mx-4">
@@ -51,7 +77,7 @@ export default function About() {
         </header>
         <section className="mt-5 about-page-content">
           <p>
-            <span>
+            <span ref={spanRef}>
               As a Full Stack Developer, I bring a passion for crafting seamless
               web experiences. My expertise spans both front-end and back-end
               technologies, including React and Node.js, allowing me to

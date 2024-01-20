@@ -241,7 +241,7 @@ nav {
 
 /* about page */
 
-.about-page-content span {
+/* .about-page-content span {
   color: hsla(207, 24%, 41%, 0.2);
 
   background-clip: text;
@@ -262,7 +262,21 @@ nav {
   to {
     background-size: 100% 100%;
   }
+} */
+
+.about-page-content span {
+  color: hsla(207, 24%, 41%, 0.2);
+  background-clip: text;
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  background-image: linear-gradient(90deg, #0b263f, #0b263f);
 }
+
+.about-page-content p span {
+  display: inline-block;
+  overflow: hidden;
+}
+
 
 .btn-style {
   padding: 8px;
