@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Modal from "react-modal";
 
 import gitIcon from "../images/icons/icons8-github-64.png";
 import instaIcon from "../images/icons/icons8-instagram-48.png";
 import linkedinIcon from "../images/icons/icons8-linkedin-48.png";
-import menuIcon from "../images/icons/icons8-menu-50.png";
+
+import { IoClose } from "react-icons/io5";
 
 const NavTag = [
   {
@@ -52,31 +53,46 @@ const SocailIcon = [
 
 export default function Navbar() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
+  
+  const handleClose = () => {
+    setIsClicked(true);
+    setTimeout(() => {
+      setIsClicked(false);
+      closeModal();
+    }, 100);
+  };
+
+  const handleOpen = () => {
+    setTimeout(() => {
+      openModal();
+    }, 150);
+
+  }
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  const [path, setPath] = useState(window.location.hash);
+  // const [path, setPath] = useState(window.location.hash);
 
-  console.log(path);
 
-  useEffect(() => {
-    const handleHashChange = () => {
-      setPath(window.location.hash);
-    };
+  // useEffect(() => {
+  //   const handleHashChange = () => {
+  //     setPath(window.location.hash);
+  //   };
 
-    window.addEventListener("hashchange", handleHashChange);
+  //   window.addEventListener("hashchange", handleHashChange);
 
-    return () => {
-      window.removeEventListener("hashchange", handleHashChange);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("hashchange", handleHashChange);
+  //   };
+  // }, []);
 
   return (
     <>
       <nav className="max-w-[1440px] mx-auto mt-4">
         <section className="desktop-nav mx-10 flex justify-between">
-          <header id="home" className="nav-link self-center">
+          <header id="home" className={`nav-link self-center`}>
             Harmanpreet Singh
           </header>
 
@@ -105,15 +121,25 @@ export default function Navbar() {
         </section>
 
         <section className="mobile-nav flex justify-between">
-          <header id="home" className="nav-link">
+          <header
+            id="home"
+            className={`nav-link  my-3 ${isModalOpen ? "hidden" : ""}`}
+          >
             Harmanpreet Singh
           </header>
 
           <button
-            onClick={openModal}
-            className="hover:bg-slate-500 hover:rounded-full p-1"
+            onClick={handleOpen}
+            className={`hover:bg-slate-500 hover:rounded-full p-1 ${
+              isModalOpen ? "hidden" : ""
+            } `}
           >
-            <img src={menuIcon} alt="menu-icon" className="w-9" />
+            
+            <div id="nav-menu-icon">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
           </button>
           <Modal
             isOpen={isModalOpen}
@@ -122,13 +148,18 @@ export default function Navbar() {
             className="modal-content"
           >
             <ul className="mt-20 flex flex-col gap-8">
+              <li className="mt-[-80px] ml-[120px] mb-10">
+                <button
+                  onClick={handleClose}
+                  className={`nav-close-btn ${isClicked ? "close-clicked" : ""}`}
+                >
+                  <IoClose className="text-[2.25rem]" />
+                </button>
+              </li>
+
               {NavTag.map((tag) => (
                 <li key={tag.id} className="nav-link">
-                  <a
-                    href={tag.navTo}
-                    onClick={closeModal}
-                    className="nav-link"
-                  >
+                  <a href={tag.navTo} onClick={closeModal}>
                     {tag.name}
                   </a>
                 </li>

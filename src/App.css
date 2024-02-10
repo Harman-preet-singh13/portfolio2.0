@@ -37,6 +37,8 @@
   --nav-pri-clr: #203f5d;
   --nav-active-clr: #0b263f;
 
+  --icon-hover-clr: #d8d8e2;
+
   --btn-border-clr: #0b263f;
   --border-radius: 5px;
 
@@ -170,6 +172,54 @@ nav {
   cursor: pointer;
 }
 
+#nav-menu-icon{
+
+
+  width: 40px;
+  height: 100%;
+  position: relative;
+
+}
+
+#nav-menu-icon span{
+
+  display: block;
+  position: absolute;
+  height: 6px;
+  width: 100%;
+  background: var(--nav-pri-clr);
+  border-radius: 9px;
+  opacity: 1;
+  top:-50px;
+  left: 0;
+}
+
+
+#nav-menu-icon span:nth-child(1) {
+  top: 5px;
+}
+
+#nav-menu-icon span:nth-child(2) {
+  top: 17px;
+}
+
+#nav-menu-icon span:nth-child(3) {
+  top: 29px;
+}
+
+
+
+
+.nav-close-btn {
+  padding: 4px;
+  border-radius: 50%;
+  transition: background-color ease-out 0.1s; 
+}
+
+.nav-close-btn.close-clicked {
+  background-color: var(--icon-hover-clr); 
+}
+
 @media (min-width: 768px) {
   .mobile-nav {
     display: none;
@@ -209,6 +259,12 @@ nav {
   position: absolute;
   bottom: -20px;
   right: -25px;
+}
+
+@media (max-width:320px) {
+  .home-line-pattern {
+    right: -10px;
+  }
 }
 
 /* @keyframes spin {
