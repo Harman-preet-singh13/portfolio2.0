@@ -124,7 +124,7 @@ export default function Navbar() {
 
           <button
             onClick={openModal}
-            className={`hover:bg-slate-500 hover:rounded-full p-1 ${
+            className={` hover:rounded-full p-1 ${
               isModalOpen ? "hidden" : ""
             } `}
           >

@@ -58,7 +58,7 @@ export default function About() {
 
     const handleScroll = () => {
       const scrollPercentage = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-      animation.progress(scrollPercentage / 25);
+      animation.progress(scrollPercentage / 20);
     };
 
     window.addEventListener('scroll', handleScroll);
