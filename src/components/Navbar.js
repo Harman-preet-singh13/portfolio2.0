@@ -60,15 +60,9 @@ export default function Navbar() {
     setTimeout(() => {
       setIsClicked(false);
       closeModal();
-    }, 100);
+    }, 150);
   };
 
-  const handleOpen = () => {
-    setTimeout(() => {
-      openModal();
-    }, 150);
-
-  }
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -129,7 +123,7 @@ export default function Navbar() {
           </header>
 
           <button
-            onClick={handleOpen}
+            onClick={openModal}
             className={`hover:bg-slate-500 hover:rounded-full p-1 ${
               isModalOpen ? "hidden" : ""
             } `}
