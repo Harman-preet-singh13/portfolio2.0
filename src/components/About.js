@@ -8,7 +8,6 @@ import { FaFigma } from "react-icons/fa";
 import { FaCss3 } from "react-icons/fa";
 import gsap from "gsap";
 
-
 const btnTech = [
   {
     name: "ReactJs",
@@ -45,15 +44,14 @@ const btnTech = [
 ];
 
 export default function About() {
-
   const spanRef = useRef(null);
 
   useEffect(() => {
     const animation = gsap.to(spanRef.current, {
       backgroundSize: '100% 100%',
-      duration: 1,
-      ease: 'power2.inOut', 
-      paused: true, 
+      duration: 2,
+      ease: 'power2.inOut',
+      paused: true,
     });
 
     const handleScroll = () => {
@@ -69,6 +67,7 @@ export default function About() {
   }, []);
 
 
+
   return (
     <div className="max-w-[1024px] mx-auto mt-5 h-[90vh]">
       <div className="mx-4">
@@ -78,14 +77,21 @@ export default function About() {
         <section className="mt-5 about-page-content">
           <p>
             <span ref={spanRef}>
-              As a Full Stack Developer, I bring a passion for crafting seamless
-              web experiences. My expertise spans both front-end and back-end
-              technologies, including React and Node.js, allowing me to
-              contribute effectively to a variety of projects.
-              <br></br> I specialize in designing and implementing user-friendly
-              interfaces, creating and maintaining Restful API, and working with
-              databases. Proficient in CSS, Tailwind, and MUI, I ensure
-              applications not only function well but also look great.
+              
+                As a Full Stack Developer, I bring a passion for crafting
+                seamless web experiences.
+             
+                My expertise spans both front-end and back-end technologies,
+                including React and Node.js, allowing me to contribute
+                effectively to a variety of projects.
+              <br/>
+                I specialize in designing and implementing user-friendly
+                interfaces, creating and maintaining Restful API, and working
+                with databases.
+              
+                Proficient in CSS, Tailwind, and MUI, I ensure applications not
+                only function well but also look great.
+              
             </span>
           </p>
         </section>
@@ -94,10 +100,10 @@ export default function About() {
           <h1>Skills</h1>
 
           <div className="about-btns">
-            {btnTech.map((btn, index)=>(
-              <button 
-              key={index}
-              className={`btn-style flex gap-1 justify-center`}
+            {btnTech.map((btn, index) => (
+              <button
+                key={index}
+                className={`btn-style flex gap-1 justify-center`}
               >
                 <span className="btn-icon self-center ">{btn.icon}</span>
                 {btn.name}

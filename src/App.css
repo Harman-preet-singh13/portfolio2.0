@@ -16,7 +16,7 @@
 /* For Firefox */
 
 * {
-  scrollbar-color: #58738d #f0f0f0;
+  scrollbar-color: #58738d ;
 }
 
 *::-moz-scrollbar-thumb {
@@ -109,6 +109,19 @@ p {
   }
 }
 
+@media (max-height:740px) {
+  .projects-section {
+    margin-bottom: 150px;
+  }
+}
+
+@media (max-height:648px) {
+  .projects-section {
+    margin-bottom: 300px;
+  }
+}
+
+
 /* modal */
 
 .modal-overlay {
@@ -140,8 +153,8 @@ nav {
 }
 
 .nav-link {
-  transition: color 0.2s ease-in-out,
-    text-decoration-color 0.2s ease-in-out 0.3s;
+  transition: color 0.1s ease-in-out,
+    text-decoration-color 0.1s ease-in-out 0.1s;
 }
 
 .nav-link:hover {
@@ -373,13 +386,56 @@ nav {
 
 
 
+/* project */
+
+
+/* .project-content-transform{
+  transform: translateX(-200px);
+  opacity: 0.1;
+}
+
+.project-content-original{
+  transition: opacity 2s ease-in-out ;
+} */
 
 .project-content{
   font-size: var(--fs-para-sm);
-  font-weight: var(--fw-400);
+  font-weight: var(--fw-500);
+
 }
+
+
 
 .project-wrapper  a:hover{
-  color:var(--acc-clr)
+  color:var(--bg-pri-clr)
 }
 
+.project-header-wrapper{
+  position: relative;
+}
+
+
+.project-heading{
+  color:white;
+  position: absolute;
+  top:50%;
+  left:50%;
+  margin-top: -50px;
+  margin-left: -100px;
+}
+
+@media (max-width:768px) {
+  .project-heading{
+    margin-top: -25px;
+    margin-left: -50px;
+  }
+}
+
+
+.show {
+  
+  transition: opacity 4s;
+}
+.hide {
+  opacity: 0;
+}

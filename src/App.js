@@ -5,8 +5,6 @@ import About from "./components/About";
 import Projects from "./components/Projects";
 
 
-// as you scroll down change the pathname
-
 
 function App() {
 
@@ -20,8 +18,9 @@ function App() {
 
       <div id="about" className="mb-12"></div>
       <About />
-      <div id="projects" className="mb-12"></div>
+      <div id="projects" className="projects-section mb-12"></div>
       <Projects /> 
+
     </div>
   );
 }
