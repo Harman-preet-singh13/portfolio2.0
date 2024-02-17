@@ -3,13 +3,78 @@ import ProjectContent from "./ProjectContent";
 import bgImg from "../images/icons/Screenshot_3.jpg";
 
 
-
 export default function Projects() {
   const [isHeaderVisible, setIsHeaderVisible] = useState(false);
- 
+  const [isContentVisible, setIsContentVisible] = useState([]);
+  const [isImgVisible, setIsImgVisible] = useState([]);
 
   const headerRef = useRef(null);
+  const contentRefs = useRef([]);
+  const imgRefs = useRef([]);
 
+  useEffect(()=>{
+
+    const observerOptions = {
+      root:null,
+      rootMargin: "0px",
+      threshold: 0.2,
+    };
+
+    const observers = contentRefs.current.map((ref, index) => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if(entry.isIntersecting){
+            setIsContentVisible((prevVisibilty) => {
+              const updatedVisibility = [...prevVisibilty];
+              updatedVisibility[index] = true;
+              return updatedVisibility;
+            });
+            observer.disconnect();
+          }
+        },
+        observerOptions
+      );
+
+      observer.observe(ref);
+      return observer;
+    });
+
+    return () => {
+      observers.forEach((observer) => observer.disconnect());
+    }
+  },[]);
+
+  useEffect(()=>{
+
+    const observerOptions = {
+      root:null,
+      rootMargin: "0px",
+      threshold: 0.01,
+    };
+
+    const observers = imgRefs.current.map((ref, index) => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if(entry.isIntersecting){
+            setIsImgVisible((prevVisibilty) => {
+              const updatedVisibility = [...prevVisibilty];
+              updatedVisibility[index] = true;
+              return updatedVisibility;
+            });
+            observer.disconnect();
+          }
+        },
+        observerOptions
+      );
+
+      observer.observe(ref);
+      return observer;
+    });
+
+    return () => {
+      observers.forEach((observer) => observer.disconnect());
+    }
+  },[]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -43,7 +108,6 @@ export default function Projects() {
 
 
 
-
   return (
     <div className="project-wrapper ">
       <header className="project-header-wrapper bg-white">
@@ -71,8 +135,14 @@ export default function Projects() {
                     <div className=" flex flex-col-reverse md:flex-row justify-between">
                       <div 
                       
-                      className={`self-center mt-4 md:mt-0 max-w-[350px]`}
-                      
+                      ref={(ref) => (contentRefs.current[index] = ref)}
+                      className={`self-center mt-4 md:mt-0 max-w-[350px]
+                      ${
+                        isContentVisible[index]
+                          ? "project-content-original"
+                          : "project-content-transform"
+                      }
+                      `}
                       >
                         <a
                           className="underline text-sm"
@@ -85,7 +155,18 @@ export default function Projects() {
                         <br></br>
                           <span className=" project-content">{projects.content}</span>
                       </div>
-                      <a
+                      <div
+                      
+                      ref={(ref) => (imgRefs.current[index] = ref)}
+                      className={`
+                      ${
+                        isImgVisible[index]
+                          ? "project-img-original"
+                          : "project-img-transform"
+                      }
+                      `}
+                      >
+                         <a
                         href={projects.link}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -99,12 +180,16 @@ export default function Projects() {
                         
                       />
                       </a>
+                      </div>
+                     
                       
                     </div>
                   </div>
                 </div>
               );
             })}
+
+
           </section>
         </div>
       </div>

@@ -85,7 +85,7 @@ export default function Navbar() {
   return (
     <>
       <nav className="max-w-[1440px] mx-auto mt-4">
-        <section className="desktop-nav mx-10 flex justify-between">
+        <section className="desktop-nav py-0 md:py-2  mx-10 flex justify-between">
           <header id="home" className={`nav-link self-center`}>
             Harmanpreet Singh
           </header>
