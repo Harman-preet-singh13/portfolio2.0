@@ -60,7 +60,7 @@ html{
 
 body {
 
-  overflow-x: hidden;
+  overflow-x: hidden !important;
   font-family: "Poppins", sans-serif;
   background-color: var(--bg-pri-clr);
 
@@ -402,10 +402,15 @@ nav {
 }
 
 .project-img-transform{
-  
   transform: translateX(400px);
   opacity: 0.1;
-  
+}
+
+@media (max-width:768px) {
+  .project-img-transform{
+    transform: translateX(-200px);
+    opacity: 0.1;    
+  }
 }
 
 .project-img-original{
